@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Wishlist</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeInDown 1s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            animation: fadeIn 1s ease;
+            padding: 1rem; /* Added padding for better spacing */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        thead {
+            background: #3498db;
+            color: white;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        tbody tr {
+            transition: all 0.3s ease;
+            animation: fadeIn 0.5s ease;
+            animation-fill-mode: both;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        tbody tr:hover {
+            background: #f5f5f5;
+            transform: translateX(5px);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 50px;
+        }
+
+        .empty-cart h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .empty-cart img {
+            max-width: 350px;
+            margin-bottom: 20px;
+        }
+
+        .remove-btn {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .remove-btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .Product-image {
+            width: 80px;
+            height: 80px;
+          
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 0.5rem;
+            }
+
+            table, th, td {
+                font-size: 0.9rem;
+                padding: 0.5rem;
+            }
+
+            .remove-btn {
+                padding: 0.3rem 0.5rem;
+            }
+
+            .Product-image {
+                width: 60px; /* Reduce size for smaller screens */
+                height: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.2rem;
+            }
+
+            .empty-cart h1 {
+                font-size: 1.8rem;
+            }
+
+            .empty-cart img {
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Include Navigation Bar -->
+    <div th:include="@{/buyerNav.html}"></div>
+
+    <h1 class="animate__animated animate__fadeInDown">Wishlist</h1>
+    <div class="container">
+        <!-- If there are products in the wishlist -->
+        <div th:if="${!products.isEmpty()}">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product Image</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="product, iterStat : ${products}" th:style="'animation-delay: ' + ${iterStat.index * 0.1} + 's'">
+                        <td>
+                            <img th:src="${product.imageUrl}" alt="Product Image" class="Product-image">
+                        </td>
+                        <td th:text="${product.name}"></td>
+                        <td th:text="${product.price}"></td>
+                        <td> 
+                            <button class="remove-btn" th:onclick="'remove('+ ${product.productId} + ')'">Remove from Wishlist</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- If the wishlist is empty -->
+        <div th:unless="${!products.isEmpty()}" class="empty-cart">
+            <img src="https://evyapari.com/static/media/empty_cart.45e2dadaaca71284eb3a.jpg" alt="Empty Wishlist">
+            <h1>Your Wishlist is Empty</h1>
+        </div>
+    </div>
+
+    <script>
+        function remove(productId) {    
+            fetch("/api/v1/wishlist?productId=" + productId, {
+                method: "DELETE"
+            }).then(res => {
+                console.log(res);
+                window.location.reload();
+            }).catch(err => {
+                console.log(err);
+            });
+        }
+    </script>
+</body>
+</html>

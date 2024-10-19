@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Home Page</title>
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        
+    </style>
+    <script>
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+    </script>
+</head>
+<body>
+    <div class="banner-section-bg-container">
+        <nav class="nav">
+            <div class="nav-logo">
+                <p>Revshop</p>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="#" class="link active">Home</a></li>
+                    <li><a href="#about-us" class="link">About Us</a></li>
+                    <li><a href="#shop" class="link">Shop</a></li>
+                    <li><a href="#contact" class="link">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="nav-button">
+            	<a class="btn custom-button" href="/api/v1/login">Sign In</a>
+            	<a class="btn custom-button" href="/api/v1/register">Sign Up</a>
+            </div>
+            <div class="nav-menu-btn">
+                <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+            </div>
+        </nav>
+
+        <div class="overlay"></div>
+        <div class="content">
+            <h1 class="banner-heading">Welcome to RevShop</h1>
+            <p class="banner-caption">Buy Smart & Good Products</p>
+            <div>
+            	<a class="btn custom-button custom-outline-button" href="/api/v1/login">Login</a>
+            	<a class="btn custom-button custom-outline-button" href="/api/v1/register">Register</a>
+            </div>
+        </div>
+    </div>
+    <div class="shop">
+    <div class="container-fluid about-us" id="about-us">
+        <div class="about-us-container">
+            <div class="about-us-content">
+                <h1>About Us</h1>
+                <p>Welcome to RevShop! We are dedicated to bringing you the best products at unbeatable prices. Our mission is to provide a seamless and enjoyable shopping experience for all our customers.</p>
+                <p>At RevShop, we carefully select our products to ensure quality and value. Whether you're looking for the latest tech gadgets, stylish apparel, or everyday essentials, we have something for everyone.</p>
+                <p>Our team is passionate about customer satisfaction. We strive to offer exceptional service and support, making sure your needs are met at every step of your shopping journey.</p>
+                <p>Thank you for choosing RevShop. We look forward to serving you and hope you have a fantastic shopping experience!</p>
+            </div>
+        </div>
+    </div>
+    
+        <div class="shop-content col-md-12" id="shop">
+            <h1>Shop At RevShop</h1>
+                <p>Welcome to RevShop! We are dedicated to bringing you the best products at unbeatable prices. Our mission is to provide a seamless and enjoyable shopping experience for all our customers.</p>
+                <p>At RevShop, we carefully select our products to ensure quality and value. Whether you're looking for the latest tech gadgets, stylish apparel, or everyday essentials, we have something for everyone.</p>
+                <p>Our team is passionate about customer satisfaction. We strive to offer exceptional service and support, making sure your needs are met at every step of your shopping journey.</p>
+                <p>Thank you for choosing RevShop. We look forward to serving you and hope you have a fantastic shopping experience!</p>
+        </div>
+        <div class="contact-us container" id="contact">
+            <div class="contact_header">
+                <h1>Contact US</h1>
+            </div>
+            <form action="index.html">
+                   <div class="row">
+                        <div class="col-md-12">
+                            <label for="name">USERNAME :</label>
+                            <input type="text" class="form-control" id="name" name="user" minlength="5" data-listener-added_92df8398="true">
+                        </div>
+                   </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label for="name">EMAIL :</label>
+                            <input type="email" class="form-control" id="email" name="email" data-listener-added_92df8398="true">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="phone">PHONE NUMBER :</label>
+                            <input type="number" class="form-control" id="phone" name="phone" data-listener-added_92df8398="true" >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="queries">Comments,Questions</label>
+                            <textarea name="comments" id="queries" class="form-control" rows="3"></textarea>
+                        </div>
+                   </div>
+                   <div class="row">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn submit-btn">SUBMIT</button>
+                   </div>
+                   </div>
+             </form>
+        </div>
+    </div>
+    <footer>
+        <!-- Footer Start-->
+        <div class="footer-area footer-padding">
+            <div class="container">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Important Link</h4>
+                                <ul>
+                                    <li><a href="#about-us">About Us</a></li>
+                                    <li><a href="#contact">Contact Us</a></li>
+                                    <li><a href="#">Events</a></li>
+                                    <li><a href="#">Explore Revature</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Address Info</h4>
+                                <ul>
+                                    <li>
+                                        <p>Address : Workafella High Street, Teynampet 12th floor, New, 431, Anna Salai, Chennai, Tamil Nadu 600018</p>
+                                    </li>
+                                    <li><a href="#">Phone : 99999 99999</a></li>
+                                    <li><a href="#">Email : revshop007@gmail.com</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Contact Link</h4>
+                                <div class="row">
+                                    <ul class="footer-social">
+                                        <li><a href="https://www.facebook.com/stepcone2023" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="https://www.instagram.com/stepcone_2023_official/" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="https://twitter.com/Stepcone_2023" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                        <li><a href="https://www.linkedin.com/company/stepcone-2023/" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <p>&copy; 2024 All rights reserved | This template is made by Revshop Team</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Up -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Back to Top functionality
+        var backToTopBtn = document.querySelector('.back-to-top');
+
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 100) {
+                backToTopBtn.style.display = 'block';
+            } else {
+                backToTopBtn.style.display = 'none';
+            }
+        });
+
+        backToTopBtn.addEventListener('click', function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        window.addEventListener('scroll', function () {
+            var navbar = document.querySelector('.nav');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+   
+        function myMenuFunction() {
+         var i = document.getElementById("navMenu");
+     
+         if(i.className === "nav-menu") {
+             i.className += " responsive";
+         } else {
+             i.className = "nav-menu";
+         }
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            var links = document.querySelectorAll('.nav-menu .link');
+            var currentUrl = window.location.pathname;
+
+            links.forEach(function(link) {
+                if (link.getAttribute('href') === currentUrl) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+        
+        function login(){
+        	fetch("/api/v1/login", {  		
+        	}).then((response) => {
+        		console.log(response);
+        	}).catch((err) => {
+        		console.log(err);
+        	})
+        }
+        
+        function register(){
+        	fetch("/api/v1/register", {
+        		
+        	}).then((response) => {
+        		console.log(response);
+        	}).catch((err) => {
+        		console.log(err);
+        	})
+        }
+      
+     </script>
+         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+         
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Order Details</title>
+<style>
+ .product-row {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* Space between products */
+    padding: 20px 0;
+}
+
+.product-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #f0f0f0;
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-image img {
+    max-width: 180px;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.product-details {
+    flex: 1;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+}
+
+.product-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.product-description {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.product-price-quantity {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2ecc71;
+}
+
+.add-to-cart {
+    padding: 12px 24px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.add-to-cart:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.05);
+}
+
+.product-card:hover .product-name {
+    color: #3498db;
+}
+
+@media screen and (max-width: 768px) {
+    .product-card {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        gap: 20px;
+    }
+
+    .product-image {
+        width: 100%;
+    }
+
+    .product-image img {
+        max-width: 100%;
+    }
+
+    .product-details {
+        margin-left: 0;
+    }
+
+    .product-price-quantity {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .add-to-cart {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+</style>
+</head>
+<body>
+	<div th:include="@{/buyerNav.html}"></div>
+	<div th:each="orderItem : ${orderItems}">
+		<div class="product-row">
+	    <div class="product-card">
+	        <div class="product-image">
+	            <img th:src="${orderItem.product.imageUrl}" alt="Product Image">
+	        </div>
+	        <div class="product-details">
+	            <h2 class="product-name" th:text="${orderItem.product.name}"></h2>
+	            <p class="product-description" th:text="${orderItem.product.description}"></p>
+	            <div class="product-price-quantity">
+	                <span class="price" th:text="${orderItem.product.discountPrice}"></span>
+	            </div>
+	            <a th:href="@{'/api/v1/reviews/' + ${orderItem.product.productId}}" class="add-to-cart">Add Review</a>
+	        </div>
+	    </div>
+	</div>
+</body>
+</html>

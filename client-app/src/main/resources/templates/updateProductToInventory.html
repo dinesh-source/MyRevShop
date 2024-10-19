@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Product</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href = "/css/addProduct.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<div th:include="@{/sellerNav.html}"></div>
+<h1>Update Existing Product</h1>
+<form th:action="@{/api/v1/update}" th:object="${product}" method="post">
+	<input type="hidden" th:name = "productId" th:value = "${product.productId}">
+    <label for="name">Product Name:</label>
+    <input type="text" id="name" th:field="*{name}" th:value="${product.name}" maxlength="150" required>
+
+    <label for="gender">Gender:</label>
+    <select id="gender" th:value="${product.gender}" th:field="*{gender}">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+    </select>	
+
+    <label for="description">Description:</label>
+    <textarea id="description" th:value="${product.description}" th:field="*{description}"></textarea>
+
+    <label for="imageUrl">Image URL:</label>
+    <input type="url" id="imageUrl" th:field="*{imageUrl}" th:value="${product.imageUrl}" maxlength="255">
+	
+	<label for="categoryId">Category:</label>
+    <select id="categoryId" th:field="*{category.categoryId}" required>
+        <option name="name" value="0">Select a category</option>
+        <option th:each="category : ${categories}" 
+                th:value="${category.categoryId}" 
+                th:text="${category.categoryName}"></option>
+    </select>
+
+    <!-- <label for="sizes">Size:</label>
+    <select id="sizes" th:name="size"  >
+        <option th:value="${product.size.sizeId}" th:text ="${product.size.sizeName}"></option>
+    </select>
+     -->
+    
+    <label for="price">Price:</label>
+    <input type="number" id="price" th:value="${product.price}" th:field="*{price}" step="0.01" required>
+
+    <label for="discountPrice">Discount Price:</label>
+    <input type="number" id="discountPrice" th:value="${product.discountPrice}" th:field="*{discountPrice}" step="0.01">
+
+    <label for="quantityAvailable">Quantity Available:</label>
+    <input type="number" id="quantityAvailable" th:value="${product.quantityAvailable}" th:field="*{quantityAvailable}" required>
+
+    <label for="thresholdQuantity">Threshold Quantity:</label>
+    <input type="number" id="thresholdQuantity" th:value="${product.thresholdQuantity}" th:field="*{thresholdQuantity}" value="0">
+
+    <button type="submit">Update Product</button>
+</form>
+
+<script>
+document.getElementById('categoryId').addEventListener('change', function() {
+    var categoryId = this.value;
+
+    if (categoryId) {
+        fetch('/api/v1/sizes?categoryId=' + categoryId)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                updateSizesDropdown(data);
+            })
+            .catch(error => {
+                console.error('Error fetching sizes:', error);
+            });
+    } else {
+        let sizesDropdown = document.getElementById('sizes');
+        sizesDropdown.innerHTML = '<option value="">Select a size</option>';
+    }
+});
+
+function updateSizesDropdown(sizes) {
+    let sizesDropdown = document.getElementById('sizes');
+    sizesDropdown.innerHTML = '';
+    sizesDropdown.appendChild(new Option('Select a size', ''));
+    sizes.forEach(size => {
+        var newSizeOption = document.createElement('option');
+        newSizeOption.value = size.sizeId;
+        newSizeOption.text = size.sizeName;
+        sizesDropdown.appendChild(newSizeOption);
+    });
+}
+</script>
+</body>
+</html>
+	

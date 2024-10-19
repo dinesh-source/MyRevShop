@@ -1,0 +1,51 @@
+ <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <link rel="stylesheet" th:href="@{/css/feedback.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="feedback-container">
+        <h1>Leave Your Feedback</h1>
+        <form th:action="@{/api/v1/feedback}" th:method="post">
+            <input type="hidden" th:value="${productId}" name="productId"/>
+            
+            <!-- Username Field -->
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+            
+            <!-- Emoji Rating System -->
+            <label for="rating">Rating</label>
+            <div class="emoji-rating">
+                <input type="radio" id="emoji5" name="rating" value="5" required>
+                <label for="emoji5" title="Excellent">😍</label>
+
+                <input type="radio" id="emoji4" name="rating" value="4">
+                <label for="emoji4" title="Good">😊</label>
+
+                <input type="radio" id="emoji3" name="rating" value="3">
+                <label for="emoji3" title="Average">😐</label>
+
+                <input type="radio" id="emoji2" name="rating" value="2">
+                <label for="emoji2" title="Poor">😕</label>
+
+                <input type="radio" id="emoji1" name="rating" value="1">
+                <label for="emoji1" title="Terrible">😢</label>
+            </div>
+            
+            <!-- Comments Field -->
+            <label for="comments">Comments</label>
+            <textarea id="comments" name="comments" rows="5" required></textarea>
+            
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Submit Feedback</button>
+        </form>
+    </div>
+</body>
+</html>
+ 

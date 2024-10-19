@@ -1,0 +1,131 @@
+.product-image-container {
+     position: relative;
+     z-index: 3;
+     left: 3%;
+     text-align: right;
+     perspective: 1000px;
+     animation: rotate 3s linear;
+ }
+
+ .product-image {
+     width: 100%;
+     height: auto;
+     object-fit: contain;
+     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+ }
+
+ .product-info-section {
+     padding: 40px;
+ }
+
+ .product-details h2 {
+     font-size: 2rem;
+     font-weight: bold;
+ }
+
+ .rating {
+     display: flex;
+     align-items: center;
+     margin-bottom: 15px;
+ }
+
+ .stars {
+     color: #FFD700;
+     margin-right: 10px;
+ }
+
+ .price-section {
+     display: flex;
+     align-items: baseline;
+     margin-bottom: 15px;
+ }
+
+ .current-price {
+     font-size: 1.75rem;
+     font-weight: bold;
+     margin-right: 15px;
+ }
+
+ .original-price {
+     font-size: 1.2rem;
+     text-decoration: line-through;
+     color: #999;
+ }
+
+ .product-description {
+     margin-bottom: 15px;
+ }
+
+ .product-options {
+     display: flex;
+     margin-bottom: 15px;
+ }
+
+ /* Color Options */
+.color-options .color-circles {
+    display: flex;
+    gap: 10px;
+}
+
+.color-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.color-circle:hover {
+    border-color: #000;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.left-section {
+    color: white;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.left-background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #0e1626;
+    clip-path: polygon(0 0, 80% 0, 60% 100%, 0% 100%);
+    z-index: 1;
+}
+
+.product-image-3d {
+    height: 32rem !important;
+    width: 100%;
+    height: auto;
+    display: inline-block;
+    transform-style: preserve-3d;
+    border-radius: 3%;
+}
+
+@media (max-width: 768px) {
+    .product-image {
+        width: 100%;
+        border-radius: 3%;
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotateY(180deg);
+    }
+
+    100% {
+        transform: rotateY(0deg);
+    }
+}

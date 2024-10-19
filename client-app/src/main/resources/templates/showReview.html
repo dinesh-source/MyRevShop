@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RevShop</title>
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet" th:href="@{/css/review.css}">
+</head>
+
+<body>
+	<div th:include="@{/buyerNav.html}"></div>
+	<div class="container mt-5">
+		<h2 class="text-center">Product Review</h2>
+		<form th:action="@{/api/v1/reviews/{id}(id = ${productId})}" th:method="POST" th:object="${review}">
+			<div class="card p-4">
+				<h4>Leave a Review</h4>
+				<div th:each="product : ${products}">
+					<p th:text="${product.name}"></p>
+				</div>
+				<div class="form-group">
+					<label for="reviewContent">Your Review:</label>
+					<textarea th:field="*{reviewContent}" class="form-control" id="reviewContent" rows="5"
+						placeholder="Write your review here..."></textarea>
+				</div>
+	
+				<div class="form-group">
+					<label for="starRating">Rating:</label>
+					<div id="starRating" class="stars d-inline-block">
+						<span data-index="1" class="star">&#9733;</span> <span
+							data-index="2" class="star">&#9733;</span> <span data-index="3"
+							class="star">&#9733;</span> <span data-index="4" class="star">&#9733;</span>
+						<span data-index="5" class="star">&#9733;</span>
+					</div>
+				</div>
+				 <input type="hidden" id="ratingValue" th:field="*{rating}" />
+	
+				<button type="submit" class="btn btn-primary" id="submitReview">Submit
+					Review</button>
+			</div>
+		</form>
+	</div>
+
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+		  	const stars = document.querySelectorAll('#starRating .star');
+		    const ratingValueInput = document.getElementById('ratingValue');
+		  	let selectedRating = 0;
+		
+		  	stars.forEach((star, index) => {
+		    	star.addEventListener('mouseover', () => {
+		      		highlightStars(index + 1);
+		    	});
+		
+			    star.addEventListener('mouseout', () => {
+			    	highlightStars(selectedRating);
+			    });
+		
+			    star.addEventListener('click', () => {
+			    	selectedRating = index + 1;
+			    	ratingValueInput.value = selectedRating;
+			    	highlightStars(selectedRating);
+			    });
+  			});
+
+	  		function highlightStars(rating) {
+	    		stars.forEach((star, index) => {
+	      			if (index < rating) {
+	        			star.classList.add('hovered');
+	      			} else {
+	        		star.classList.remove('hovered');
+	      			}
+	    		});
+	 		}
+		});
+	</script>
+</body>
+</html>

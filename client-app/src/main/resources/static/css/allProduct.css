@@ -1,0 +1,65 @@
+.left-filter {
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #eaeaea;
+}
+
+.card-image {
+    height: 19rem;
+}
+
+.heart {
+    position: absolute;
+    right: 3%;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 1500px) {
+    .product-card {
+        width: 18rem;
+    }
+}
+
+.color-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.1s, border 0.3s;
+}
+
+.color-circle:hover {
+    transform: scale(1.1);
+    border: 2px solid #333;
+}
+
+.color-options {
+    gap: 1rem;
+}
+
+@media (max-width: 767px) {
+    .collapse {
+        position: absolute;
+        z-index: 2;
+        width: 95%;
+    }
+}
+
+@media (min-width: 768px) {
+    .left-filter {
+        position: fixed;
+        left: 10px;
+        height: 100%;
+        width: 15%;
+        overflow-y: auto;
+        border-right: 1px solid #ddd;
+        z-index: 3;
+    }
+
+    .products {
+        margin-left: 16%;
+    }
+}

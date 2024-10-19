@@ -1,0 +1,114 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url("https://t4.ftcdn.net/jpg/06/91/05/19/360_F_691051962_GFhQPOAXABmf7l706q89b2PFh6FnB1kI.jpg");
+    background-size: cover;
+    background-position: center;
+    font-family: 'Arial', sans-serif;
+    opacity: 0;
+    animation: fadeIn 1.5s forwards;
+}
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+.login-container {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 2rem;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    transition: all 0.5s ease;
+}
+.login-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: #ffbf00;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+.form-group label {
+    font-weight: 500;
+    color: #ffbf00;
+    margin-left: 8px;
+}
+.form-control {
+    border-radius: 1.6rem !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #fff !important;
+    border: none;
+    padding: 0.75rem;
+}
+
+/* .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+} */
+.btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+a:hover {
+    color: #ffda6b;
+    text-decoration: none;
+}
+
+.btn-custom {
+    background-color: #ffbf00;
+    color: black;
+    font-weight: 600;
+    border-radius: 30px;
+    width: 150px; /* You can adjust the button width as needed */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.login-button{
+	display: block;
+    margin: 0 auto;
+    background-color: #ffbf00;
+    color: black;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.3s;
+    border-radius: 30px;
+}
+
+.btn-custom:hover {
+    background-color: #e6ac00;
+    transform: scale(1.05);
+}
+.login-link {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    color: #ffbf00;
+}
+.error {
+    color: red;
+    font-size: 0.875rem;
+}
+@media (max-width: 768px) {
+    .login-container {
+        padding: 1.5rem;
+    }
+    .login-container h2 {
+        font-size: 1.5rem;
+    }
+}
+@media (max-width: 576px) {
+    .login-container {
+        padding: 1rem;
+    }
+    .login-container h2 {
+        font-size: 1.25rem;
+    }
+    .btn-custom {
+        width: 100%; /* Full width for buttons on smaller devices */
+    }
+}
